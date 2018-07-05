@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MarketOne International</title>
+	<link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+	<picture>
+	  <source media="(min-width: 800px)" srcset="images/logo_large.png">
+	  <source media="(min-width: 500px)" srcset="images/logo_medium.png">
+	  <img src="images/logo_small.png" alt="MarketOne logo" class="header__logo">
+	</picture>
+</header>
+
+<div class="flex">
+	<nav class="nav">
+		<ul class="nav__list">
+			<li class="nav__item"><a href="#">About us</a></li>
+			<li class="nav__item"><a href="#">Services</a></li>
+			<li class="nav__item"><a href="#">Portfolio</a></li>
+			<li class="nav__item"><a href="#">Contact us</a></li>
+		</ul>
+	</nav>
+	<section class="main">
+		<div class="content">
+			<h1 class="content__title">Welcome</h1>
+			<p class="content__description">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="#">Duis aute irure</a> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<hr>
+		<div class="profiles">
+			<div class="profile">
+				<img src="images/profile_1.jpg" alt="profile_1" width="60" height="60" class="profile__image">
+				<div class="profile-wrapper">
+					<h3 class="profile__header">Profile Name here</h3>
+					<p class="profile__description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+					<p class="profile__description">Duis aute irure</a> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+					<p class="profile__details">
+						<a href="#">Read more</a>
+					</p>
+				</div>
+			</div>
+			<hr>
+			<div class="profile">
+				<img src="images/profile_2.jpg" alt="profile_2" width="60" height="60" class="profile__image">
+				<div class="profile-wrapper">
+					<h3 class="profile__header">Profile Name here</h3>
+					<p class="profile__description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+					<p class="profile__description">Duis aute irure</a> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+					<p class="profile__details">
+						<a href="#">Learn more</a>
+					</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</section>
+	<section class="contact">
+		<form action="" name="contact-us">
+			<fieldset>
+				<div class="form-group">
+					<label for="firstname" class="form-group__label">First Name<span>*</span></label>
+					<input id="firstname" type="text" name="firstname" class="form-group__input">
+				</div>
+				<div class="form-group" >
+					<label for="lastname" class="form-group__label">Last Name<span>*</span></label>
+					<input id="lastname" type="text" name="lastname" class="form-group__input">
+				</div>
+				<div class="form-group">
+					<label for="title" class="form-group__label">Title<span>*</span></label>
+					<input id="title" type="text" name="title" class="form-group__input">
+				</div>
+				<div class="form-group" >
+					<label for="email" class="form-group__label">Email Address<span>*</span></label>
+					<input id="email" type="email" name="email" class="form-group__input">
+				</div>
+				<div class="form-group">
+					<label for="phone" class="form-group__label">Phone<span>*</span></label>
+					<input id="phone" type="tel" name="phone" class="form-group__input">
+				</div>
+				<div class="form-group">
+					<label for="select" class="form-group__label">Already A Client?<span>*</span></label>
+					<select id="select" class="form-group__select">
+						<option value="default">--Please Select--</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+				<button type="submit" class="form-group__submit">Contact Us</button>
+			</fieldset>
+		</form>
+	</section>
+</div>
+<footer class="footer">
+	<em>Copyright@ 2013 MarketOne International. All rights reserved</em>
+</footer>
+<!-- end flex -->
+<script type="text/javascript">
+	  $.validator.addMethod("valueNotEquals", function(value, element, arg){
+	    return arg != value;
+	  }, "Value must not equal arg.");
+	$(document).ready(function () {
+	  $("form[name='contact-us']").validate({
+	    errorClass: 'form-error',
+	    validClass: 'success',
+	    errorElement: 'span',
+	    highlight: function(element, errorClass, validClass) {
+	      $(element).parents("div.form-group").addClass(errorClass).removeClass(validClass);
+	    },
+	    unhighlight: function(element, errorClass, validClass) {
+	      $(element).parents(".form-error").removeClass(errorClass).addClass(validClass);
+	    },
+	    rules: {
+	      firstname: "required",
+	      lastname: "required",
+	      title: "required",
+	      phone: "required",
+	      select: { 
+	        valueNotEquals: "default" 
+	      },
+	      email: {
+	        required: true,
+	        email: true
+	      }
+	    },
+	    messages: {
+	      firstname: "Please enter your firstname",
+	      lastname: "Please enter your lastname",
+	      title: "Please enter your title",
+	      phone: "Please enter your phone",
+	      email: "Please enter a valid email address",
+	      select: "Please select an item!"
+	    },
+	    // Make sure the form is submitted to the destination defined
+	    submitHandler: function(form) {
+	      form.submit();
+	    }
+	  });
+	});
+</script>
+</body>
+</html>
